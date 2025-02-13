@@ -1,0 +1,23 @@
+{% include "partials/head.html" %}
+
+<body>
+    
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <h3 class="mb-5">Cadastar Estudante</h3>
+        <div>
+            <form action="{{form_action}}" method="post">
+                {% csrf_token %}
+                {% for field in fields %}
+                <div class="mb-3">
+                    {{field}}
+                </div>
+                {% endfor %}
+                <br>
+        </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>

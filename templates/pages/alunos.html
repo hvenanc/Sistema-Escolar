@@ -1,0 +1,45 @@
+{% include "partials/head.html" %}
+
+<body>
+    
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <h3 class="mb-5">Estudantes Cadastrados</h3>
+        <table class="table table-striped table-bordered border-secundary text-center">
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Aluno</th>
+                    <th>E-mail Institucional</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                <tr>
+                    <th>{{ aluno.matricula }}</th>
+                    <th>{{ aluno.nome }}</th>
+                    <th>{{ aluno.email }}</th>
+                    <th class="icons">
+                        <a href="editar/{{aluno.id}}">
+                            <i class="fa-solid fa-pencil pencil"></i>
+                        </a>
+                        <a href="deletar/{{aluno.id}}">
+                            <i class="fas fa-trash trash"></i>
+                        </a>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'partials/modal.html' %}
+
+        <div class="mt-4 modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="far fa-plus-square icon"></i>
+            Cadastrar Aluno
+        </div>
+    </div>
+</body>
+</html>
