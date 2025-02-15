@@ -18,6 +18,17 @@
                         <li><a class="dropdown-item" href="{% url "alunos:alunos" %}">Listar Estudantes</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Turmas
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "turmas:cadastrar" %}">Cadastrar Turmas</a></li>
+                        <li><a class="dropdown-item" href="{% url "turmas:turmas" %}">Listar Turmas</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div id="themeSwitcher">

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import AlunoForm
-from .models import Aluno
 from django.http import Http404
 from django.urls import reverse
+from .forms import AlunoForm
+from .models import Aluno
 
 
 def listar_alunos(request):
@@ -18,7 +18,8 @@ def listar_alunos(request):
 
 def form_cadastro_aluno(request):
    form = AlunoForm()
-   return render(request, 'pages/cadastroAluno.html', {
+   return render(request, 'pages/formCadastro.html', {
+      'title': 'Cadastro de Estudante',
       'fields' : form,
       'form_action' : reverse('alunos:post')
    })
@@ -48,8 +49,9 @@ def deletar_aluno(request, id):
 def form_editar_aluno(request, id):
    aluno = Aluno.objects.get(id = id)
    form = AlunoForm(instance = aluno)
-   return render(request, 'pages/editarAluno.html', {
+   return render(request, 'pages/formEditar.html', {
       'aluno' : aluno,
+      'title': 'Editar Estudante',
       'fields' : form,
       'form_action' : reverse('alunos:salvar', args=[aluno.id])
    })

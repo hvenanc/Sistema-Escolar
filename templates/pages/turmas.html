@@ -1,0 +1,32 @@
+{% include 'partials/head.html' %}
+
+{% include 'partials/navbar.html' %}
+
+<div class="container text-center mt-5">
+    <div class="row justify-content-evenly">
+        {% for turma in turmas %}
+        <div class="col-6 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    {{turma.nome}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{turma.horario}}</h5>
+                    <p class="card-text">{{turma.descricao}}</p>
+                </div>
+                <div class="card-header icons">
+                    <a href="detalhar/{{turma.id}}">
+                        <i class="fa-solid fa-people-group people"></i>
+                    </a>
+                    <a href="editar/{{turma.id}}">
+                        <i class="fa-solid fa-pencil pencil"></i>
+                    </a>
+                    <a href="deletar/{{turma.id}}">
+                        <i class="fas fa-trash trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
