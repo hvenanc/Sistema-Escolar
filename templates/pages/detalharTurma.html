@@ -1,0 +1,48 @@
+{% include 'partials/head.html' %}
+
+{% include 'partials/navbar.html' %}
+
+<div class="container mt-4">
+
+    <h3 class="mb-4">Turma</h3>
+    <table class="table table-striped table-bordered border-secundary text-center">
+        <tr>
+            <th>Nome</th>
+            <td>{{ turma.nome }}</td>
+        </tr>
+        <tr>
+            <th>Horário</th>
+            <td>{{ turma.horario }}</td>
+        </tr>
+        <tr>
+            <th>Descrição</th>
+            <td>{{ turma.descricao }}</td>
+        </tr>
+    </table>
+
+    {% include 'partials/modalSelect.html' %}
+
+    <h3 class="mt-5">Estudantes</h3>
+
+    <div class="mt-4 modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="far fa-plus-square icon"></i>
+        Adicionar Estudante
+    </div>
+
+    <table class="table table-striped table-bordered mt-3">
+        <!-- <thead>
+            <tr>
+                <th>Alunos</th>
+            </tr>
+        </thead> -->
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <th>{{ aluno.nome }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+</html>

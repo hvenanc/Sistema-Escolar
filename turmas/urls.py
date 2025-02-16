@@ -10,4 +10,6 @@ urlpatterns = [
     path('deletar/<int:id>', deletar_turma, name='deletar'),
     path('editar/<int:id>', form_editar_turma, name='editar'),
     path('editarT/<int:id>', editar_turma, name='editar_turma'),
+    path('detalhar/<int:id>', detalhar_turma, name='detalhar'),
+    path('detalhar/<int:turma_id>/adicionarEstudante', adicionar_estudante, name='estudante'),
 ]

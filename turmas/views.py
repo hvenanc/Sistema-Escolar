@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.urls import reverse
-from .models import Turma
+from .models import Turma, Aluno
 from .forms import TurmaForm
 
 
@@ -74,3 +74,34 @@ def editar_turma(request, id):
         turma.save()
 
     return redirect(reverse('turmas:turmas'))
+
+
+def detalhar_turma(request, id):
+
+    turma = Turma.objects.get(id = id)
+    alunos = turma.estudantes.all().order_by('nome')
+    estudantes = Aluno.objects.exclude(turma=turma) 
+
+    return render(request, 'pages/detalharTurma.html', {
+        'turma': turma,
+        'estudantes': estudantes,
+        'alunos' : alunos,
+        'form_action': reverse('turmas:estudante', args=[turma.id])
+    })
+
+
+def adicionar_estudante(request, turma_id):
+
+    turma = Turma.objects.get(id = turma_id)
+
+    if request.method == "POST":
+        estudante_id = request.POST.get("estudante_id")
+        estudante = Aluno.objects.get(id = estudante_id)
+
+        turma.estudantes.add(estudante)
+
+        return redirect(reverse('turmas:detalhar', args=[turma.id]))
+    
+    return render(request, "detalharTurma.html", {
+        "turma": turma
+    })
