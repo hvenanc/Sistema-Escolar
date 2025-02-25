@@ -9,4 +9,4 @@ class Turma(models.Model):
 
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome} - {self.estudantes}'

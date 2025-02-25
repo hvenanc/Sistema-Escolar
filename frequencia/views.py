@@ -6,7 +6,7 @@ from turmas.models import Turma
 from aula.models import Aula
 
 
-def turma_detalhes(request, turma_id):
+def lancar_frequencia_view(request, turma_id):
     try:
         turma = get_object_or_404(Turma, id=turma_id)
         alunos = turma.estudantes.all().order_by('nome')
@@ -29,7 +29,7 @@ def turma_detalhes(request, turma_id):
                     aula = aula
                 )
 
-            return redirect('turmas:detalhar', id=1)
+            return redirect('turmas:detalhar', id=turma_id)
 
         return render(request, 'pages/frequencia.html', {
             'turma': turma,
@@ -48,6 +48,7 @@ def diarios_view(request):
 
         turmas = Turma.objects.all().order_by('nome')
         frequencia = []
+        aula = None
 
 
         if request.method == 'POST':
@@ -59,9 +60,42 @@ def diarios_view(request):
         return render(request, 'pages/diario.html', {
             'turmas' : turmas,
             'frequencia' : frequencia,
+            'aula': aula
         })
     
     except ObjectDoesNotExist:
         return render(request, 'pages/erro.html', {
             'mensagem' : 'Ops! Não existe nenhum diário para essa turma nesta data!'
         })
+    
+
+def relatorio_view(request):
+    
+    turmas = Turma.objects.all()
+    aulas = []
+    alunos = []
+    frequencias = []
+    frequencias_dict = {}
+    if request.method == 'POST':
+        turma_id = request.POST.get('turma_id')
+        aulas = Aula.objects.filter(turma = turma_id).all()
+        turma = Turma.objects.filter(id = turma_id).first()
+        alunos = turma.estudantes.all().order_by('nome')
+        frequencias_dict = {aluno.nome : [] for aluno in alunos}
+        
+        for aula in aulas:
+            freq = Frequencia.objects.filter(aula = aula).all()
+            frequencias.append(freq)
+
+        
+        for frequencia in frequencias:
+            for x in frequencia:
+                frequencias_dict[x.aluno.nome].append(x.presente)
+
+    return render(request, 'pages/relatorio.html', {
+        'turmas' : turmas,
+        'aulas' : aulas,
+        'alunos': alunos,
+        'frequencias' : frequencias_dict,
+        'turma' : turma
+    })
