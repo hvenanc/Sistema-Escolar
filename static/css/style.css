@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 a {
@@ -38,4 +38,12 @@ a {
 
 #themeSwitcher {
     cursor: pointer !important;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #0d6efd;
+    border-radius: 50%;
+    color: white;
 }

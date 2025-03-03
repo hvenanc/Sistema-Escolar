@@ -29,7 +29,7 @@ def lancar_frequencia_view(request, turma_id):
                     aula = aula
                 )
 
-            return redirect('turmas:detalhar', id=turma_id)
+            return redirect('frequencia:diario')
 
         return render(request, 'pages/frequencia.html', {
             'turma': turma,
@@ -72,13 +72,14 @@ def diarios_view(request):
 def relatorio_view(request):
     
     turmas = Turma.objects.all()
+    turma = None
     aulas = []
     alunos = []
     frequencias = []
     frequencias_dict = {}
     if request.method == 'POST':
         turma_id = request.POST.get('turma_id')
-        aulas = Aula.objects.filter(turma = turma_id).all()
+        aulas = Aula.objects.filter(turma = turma_id).all().order_by('data')
         turma = Turma.objects.filter(id = turma_id).first()
         alunos = turma.estudantes.all().order_by('nome')
         frequencias_dict = {aluno.nome : [] for aluno in alunos}

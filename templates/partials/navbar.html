@@ -1,50 +1,55 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
+      <a class="navbar-brand" href="#">
         <i class="fa-solid fa-graduation-cap"></i>
-        Sistema Escolar
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Alunos
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url "alunos:cadastrar" %}">Cadastrar Estudante</a></li>
-                        <li><a class="dropdown-item" href="{% url "alunos:alunos" %}">Listar Estudantes</a></li>
-                    </ul>
-                </li>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Alunos
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url "alunos:cadastrar" %}">Cadastrar Estudante</a></li>
+                    <li><a class="dropdown-item" href="{% url "alunos:alunos" %}">Listar Estudantes</a></li>
+                </ul>
+            </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Turmas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url "turmas:cadastrar" %}">Cadastrar Turmas</a></li>
-                        <li><a class="dropdown-item" href="{% url "turmas:turmas" %}">Listar Turmas</a></li>
-                    </ul>
-                </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Turmas
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url "turmas:cadastrar" %}">Cadastrar Turmas</a></li>
+                    <li><a class="dropdown-item" href="{% url "turmas:turmas" %}">Listar Turmas</a></li>
+                </ul>
+            </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Frequência
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url "frequencia:diario" %}">Diários</a></li>
-                        <li><a class="dropdown-item" href="{% url "frequencia:relatorio" %}">Relatórios</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div id="themeSwitcher">
-            <i id="icon" class="fa-solid fa-circle-half-stroke"></i>
-        </div>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Frequência
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url "frequencia:diario" %}">Diários</a></li>
+                    <li><a class="dropdown-item" href="{% url "frequencia:relatorio" %}">Relatórios</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form class="d-flex" role="search">
+            <div id="themeSwitcher">
+                <i id="icon" class="fa-solid fa-circle-half-stroke"></i>
+            </div>
+            <div class="ms-3" role="button">
+                <i class="fa-solid fa-circle-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+            </div>
+        </form>
+      </div>
     </div>
 </nav>
 
@@ -65,3 +70,5 @@
     });
 
 </script>
+
+{% include "partials/offcanvaUser.html" %}
